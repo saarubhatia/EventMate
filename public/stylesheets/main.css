@@ -1,0 +1,213 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    padding:0;
+    height: 100%;
+    width: 100%;
+    background-color: #1D2731;
+    font-family: 'Merriweather', serif;
+    color: #D9D9D9;
+}
+
+.container{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+::-webkit-input-placeholder,input{
+    text-align: center;
+}
+
+/* login */
+
+.login_carousel > img{
+    height: 90vh;
+}
+.login-form , .reg-form{
+    padding: 80px;
+}
+.login_div{
+    background-color: black !important;
+    color: #D9D9D9;
+    height: 90% !important;
+}
+.reg, .login{
+    color: #D9D9D9;
+    float:right;
+}
+.reg:hover, .login:hover{
+    text-decoration: none;
+}
+/* event/index */
+.event-card img{
+    height: 170px;
+}
+
+.img-thumbnail{
+    padding: 0;
+    background-color: #D9D9D9;
+}
+
+.index-carousel > img{
+    height: 70vh;
+}
+
+.event_padding{
+    margin: 0;
+    padding: 0 0 10px 0;
+}
+
+.events_list{
+    margin: 25px 0;
+    color: #1D2731;
+}
+
+/* ------------------------------------------------- */
+/* event/show */
+.display_event_image > img{
+    width: 100%;
+    height: 40vh;
+}
+
+#add-new-row{
+    margin: 50px 0;
+    text-align: center;
+}
+
+#add-new-row:hover{
+    cursor: pointer;
+}
+
+#event_register_form{
+    padding: 50px;
+    color: #1D2731;
+}
+
+.add-row,.all-rows{
+    text-align: center;
+}
+
+.all-rows > div{
+    margin-top: 100px;
+}
+
+
+/* ------------------------------------------ */
+/* navbar */
+.navbar{
+    background-color: black;
+}
+
+.jumbotron{
+    background-color: black;
+    color: white;
+}
+
+/* ----------------------------------------- */
+/* footer */
+.page-footer{
+    padding: 25px;
+    height: 20vh;
+    background-color: black;
+    color: #D9D9D9;
+}
+
+.social-media-icons{
+    background-color: #D9D9D9;
+    color: #1D2731;
+}
+/* ------------------------------------------- */
+/* admin/registrations */
+.idCard{
+    padding:4px;
+}
+.profilePicture{
+    padding: 0; 
+    text-align: center;
+}
+.col-md-12 img{
+    width:inherit; 
+    height:251px;
+}
+.profilePicture img{
+    width:113px; 
+    height:131px;
+}
+::-webkit-input-placeholder, input{
+    text-align:center;
+}
+.card{
+    background-color: black;
+    border-color: blanchedalmond;
+}
+
+/* ---------------------------------------- */
+/* admin/events */
+.typereg{
+    margin-left: auto;
+}
+.form-inline{
+    text-align: center;
+    font-size: large;
+}
+.specificlabel{
+    margin-left: 120px;
+}
+.anchor{
+    color: unset;
+    text-decoration: none;
+    text-align: center;
+    font-size: larger;
+}
+.anchor:hover{
+    color: unset;
+    text-decoration: none;
+    text-align: center;
+    font-size: larger;
+}
+.fas{
+    float: right;
+}
+.fa-search{
+    width: 60px;
+}
+.newRow1{
+    margin-top: 20px;;
+}
+ tr{
+    text-align: center;
+} 
+.table-body{
+    background-color: white;
+}
+
+/* ----------------------------------- */
+/* admin/options */
+.options{
+    margin-left: 140px;
+    margin-top: 25px;
+}
+.newanchor{
+    color: rgb(56, 99, 143);
+}
+
+.newanchor:hover{
+    text-decoration: none;
+    color: white;
+}
+.draw{
+    width: 18em;
+    height: 19em;
+}
+
+.preview_div,.info{
+    background-color: black;
+}
+.modal-content{
+    background-color:#1D2731;
+}
+
+
+

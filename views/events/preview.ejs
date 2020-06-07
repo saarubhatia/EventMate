@@ -1,0 +1,81 @@
+<%- include('../partials/header') %>
+<div class="container-fluid">
+    <header class="img-thumbnail info">
+        <h1 class="display-4" style="text-align:center"><%=event.title%></h1>
+        <div class="row" style="text-align: center;">
+            <div class="col-md-4">
+                <p class="display-5">No. Of tickets: <%=registration.tickets.length%></p>
+            </div>
+            <div class="col-md-4">
+                <p class="display-5">Registration ID: <span class="btn-danger"> <%=registration._id%> </span></p>
+                <marquee>Please Note Your registration Id</marquee>
+       
+            </div>
+            <div class="col-md-4">
+                <p class="display-5">Date of registration: <%=moment(registration.createdAt).format('DD-MM-YYYY')%></p>
+       
+            </div>
+        </div>
+    </header>
+</div>
+<div class="container">
+    <div class="row justify-content-center">
+        <% registration.tickets.forEach(function(ticket){ %>
+        <div class="col-md-6 col-sm-6 img-thumbnail preview_div">
+            <div class="idCard">
+                <div class="row">
+                    <div class="col-md-12 profilePicture ">
+                        <img src="<%=ticket.image%>"
+                            class="img-thumbnail">
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;">
+                    <div class="col-md-6">
+                        <p><%=ticket.firstname%></p>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <p><%=ticket.lastname%></p>
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;">
+                    <div class="col-md-6">
+                        <p><%=ticket.mobile%></p>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <p><%=ticket.email%></p>
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;">
+                    <div class="col-md-12">
+                        <p><%=ticket.gender%></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="<%=ticket.document%>"
+                            class="img-thumbnail">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+    <div class="row justify-content-center" style="padding: 30px">
+        <div class="col-md-4" style="text-align:center">
+            <a href="/events/<%=event._id%>/register/<%=registration._id%>/edit" class="btn btn-warning btn-lg" style="width:200px"><i class='far fa-edit'></i> Edit</a>
+        </div>
+        <div class="col-md-4" style="text-align:center">
+            <form action="/events/<%=event._id%>/register/<%=registration._id%>" method="POST">
+                <button class="btn btn-lg btn-success" style="width:200px"><i class="fa fa-paper-plane" aria-hidden="true"></i> Submit</button>
+            </form>
+        </div>
+        <div class="col-md-4" style="text-align:center">
+            <form action="/events/<%=event._id%>/register/<%=registration._id%>?_method=DELETE" method="POST">
+                <button class="btn btn-lg btn-danger" style="width:200px"><i class="fa fa-times" aria-hidden="true"></i> Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

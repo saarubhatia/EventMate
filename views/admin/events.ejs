@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+<div class="container">
+    <div class="reg1">
+        <div class="row justify-content-center" style="text-align:center">
+            <div class="col-md-6 mt-4">
+                <p class="h3">Total Registrations: <%=reg_count%></p>
+            </div>
+            <div class="col-md-6 mt-4">
+                <p class="h3">Total Tickets: <%=tic_count%></p>
+            </div>
+        </div>
+        <div class="row newRow1">
+            <div class="col-md-12">
+                <div class="accordion md-accordion" id="accordion1" role="tablist" aria-multiselectable="true">
+                    <div class="card">
+                        <div class="card-header" role="tab" id="heading">
+                            <a class="collapsed anchor" data-toggle="collapse" data-parent="#accordion1"
+                                href="#collapse" aria-expanded="false" aria-controls="collapse">
+                                <h4 class="mb-0">Registration Details<i class="fas fa-angle-down rotate-icon"></i>
+                                </h4>
+                            </a>
+                        </div>
+                        <div id="collapse" class="collapse" role="tabpanel" aria-labelledby="heading"
+                            data-parent="#accordion1">
+                            <div class="card-body table-body">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Registration Id</th>
+                                            <th scope="col">Registration Type</th>
+                                            <th scope="col">No. of Tickets</th>
+                                            <th scope="col">View</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% registrations.forEach(function(registration){ %>
+                                        <tr>
+                                            <th scope="row"><%= registration._id %></th>
+                                            <td><%= registration.registrationType %></td>
+                                            <td><%= registration.tickets.length %></td>
+                                            <td><a href="/registration/<%=registration._id%>" class="btn btn-outline-dark btn-sm">View</button></td>
+                                        </tr>
+                                        <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

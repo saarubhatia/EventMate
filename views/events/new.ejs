@@ -1,0 +1,54 @@
+<%-include('../partials/header') %>
+<div class="container">
+    <h1 class="display-4" style="text-align: center;">Create a new Event</h1>
+    <div style="width: 40%; margin: 25px auto;">
+        <form action="/events" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Event Title" name="event[title]" autofocus required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Event Organizer Name" name="event[organizer]" autofocus required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="Location" name="event[location]" required>
+            </div>
+            <div class="row" style="margin: 10px 0px;">
+                <div class="col-md-2">
+                    <legend class="col-form-label col-sm-2 pt-0">Image</legend>
+                </div>
+                <div class="col-md-10">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="file" name="image" accept="image/*" required>
+                    </div> 
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="event[type]">
+                    <option value="competiton">Competition</option>
+                    <option value="live_performance">Live Performance</option>
+                    <option vlaue="conference">Conference</option>
+                    <option value="product_launch">Product Launch</option>
+                    <option value="festive">Festive</option>
+                    <option value="charitable">Charitable Auctions</option>
+                    <option value="sponsered">Sponsered Events</option>
+                    <option value="sports">Sports</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" onfocus="(this.type='datetime-local')" placeholder="Date of event" min="<%= moment().format('YYYY-MM-DDThh:mm'); %>" max="<%= moment().add(1,'years').format('YYYY-MM-DDThh:mm'); %>" name="event[event_date_time]" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" onfocus="(this.type='datetime-local')" placeholder="Last date to register" min="<%= moment().format('YYYY-MM-DDThh:mm'); %>" max="<%= moment().add(1,'years').format('YYYY-MM-DDThh:mm'); %>" name="event[event_last_date]" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="event[description]" placeholder="Description" rows="7" required></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-outline-light btn-block">Submit</button>
+            </div>
+        </form>
+        <a class="btn-outline-light" href="/events">Go Back</a>
+    </div>
+</div>
+<%-include('../partials/footer') %>

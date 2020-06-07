@@ -1,0 +1,315 @@
+<%- include('../partials/header') %>
+<div class="container-fluid event_padding">
+    <header class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="display-4"><%=event.title%></h1>
+                    <p class="text-muted"><%=event.organizer%></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="img-thumbnail display_event_image">
+                        <img src="<%=event.image%>">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-center">
+                        <p class="lead">Event Location: <span class="btn-danger"><%=event.location%></span></p>
+                        <p class="lead">Event Date: <span class="btn-danger"><%=moment(event.event_date_time).format('DD-MM-YYYY')%></span></p>
+                        <p class="lead">Event Time: <span class="btn-danger"><%=moment(event.event_date_time).format('hh:mm')%> IST</span></p>
+                        <p class="lead">Last date to register: <span class="btn-danger"><%=moment(event.event_last_date).format('LLLL')%></span></p>
+                        <p style="display: inline;">
+                            <a class="btn btn-outline-light btn-lg" href="#event_register_form">Register</a>
+                        </p>
+                        <% if(currentUser && currentUser.isAdmin){ %>
+                            <div class="btn-group dropup" role="group" style="display: inline;">
+                                <button id="btnGroupDrop1" type="button" class="btn btn-outline-light dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Options
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    <a class="dropdown-item" href="/events/<%=event._id %>/edit">Edit</a>
+                                    <form id="delete-form" action="/events/<%=event._id%>?_method=DELETE" method="POST">
+                                        <button class="dropdown-item">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Event Details</p>
+            <div class="list-group">
+                <a href="#event_details" class="list-group-item list-group-item-action btn-outline-dark active">Description</a>
+                <a href="#event_register_form" class="list-group-item list-group-item-action btn-outline-dark">Register
+                    Here!</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div id="event_details">
+                <h4 class="btn-danger">Description</h4>
+                <p>
+                    <%=event.description%>
+                </p>
+            </div>
+            <h4 class="btn-danger">Register</h4>
+            <div class="img-thumbnail" id="event_register_form">
+                <div class="add-row">
+                    <form action="/events/<%-event._id%>/register" method="POST" enctype="multipart/form-data">
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>First Name</legend>
+                                <input class="form-control" type="text" name="ticket[0][firstname]"
+                                    placeholder="First Name">
+                            </div>
+                            <div class="col-md-6">
+                                <legend>Last Name</legend>
+                                <input class="form-control" type="text" name="ticket[0][lastname]"
+                                    placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>Mobile No</legend>
+                                <input class="form-control" type="number" name="ticket[0][mobile]"
+                                    placeholder="10 digits Mobile Number">
+                            </div>
+                            <div class="col-md-6">
+                                <legend>Email</legend>
+                                <input class="form-control" type="email" name="ticket[0][email]"
+                                    placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>Gender</legend>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="ticket[0][gender]" value="Male"
+                                        checked>
+                                    <label class="form-check-label" for="male"> Male </label>
+                                    &emsp;
+                                    <input class="form-check-input" type="radio" name="ticket[0][gender]"
+                                        value="Female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                    &emsp;
+                                    <input class="form-check-input" type="radio" name="ticket[0][gender]" value="Other">
+                                    <label class="form-check-label" for="other">Other</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <legend> Verfying Documents</legend>
+                                <input class="form-control" type="file" name="document" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend> Passport-size Image</legend>
+                                <input class="form-control" type="file" name="image" required>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <legend> Registration Type</legend>
+                                    <select id="select" class="dropdown form-control" name="registrationType">
+                                        <option value="Self" class="dropdown-item" selected>Self</option>
+                                        <option value="Groups" id="groups" class="dropdown-item">Groups (Max 4)
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="all-rows" style="display: none;">
+                    <div id="new-row-1">
+                        <hr>
+                        <p class="lead">*Details of Member 2*</p>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>First Name</legend>
+                                <input class="form-control" type="text"
+                                    name="ticket[1][firstname]" placeholder="First Name">
+                            </div>
+                            <div class="col-md-6">
+                                <legend>Last Name</legend>
+                                <input class="form-control" type="text" name="ticket[1][lastname]"
+                                    placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>Mobile No</legend>
+                                <input class="form-control" type="number" name="ticket[1][mobile]"
+                                    placeholder="10 digits Mobile Number">
+                            </div>
+                            <div class="col-md-6">
+                                <legend>Email</legend>
+                                <input class="form-control" type="email" name="ticket[1][email]"
+                                    placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>Gender</legend>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[1][gender]" value="Male" checked>
+                                    <label class="form-check-label" for="male"> Male </label>
+                                    &emsp;
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[1][gender]" value="Female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                    &emsp;
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[1][gender]" value="Other">
+                                    <label class="form-check-label" for="other">Other</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <legend> Verfying Documents</legend>
+                                <input class="form-control" type="file"
+                                    name="document">
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-6">
+                                <legend> Passport-size Image</legend>
+                                <input class="form-control" type="file" name="image">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="new-row-2" style="display: none;">
+                        <hr>
+                        <p class="lead">*Details of Member 3*</p>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>First Name</legend>
+                                <input class="form-control" type="text"
+                                    name="ticket[2][firstname]" placeholder="First Name">
+                            </div>
+                            <div class="col-md-6">
+                                <legend>Last Name</legend>
+                                <input class="form-control" type="text" name="ticket[2][lastname]"
+                                    placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>Mobile No</legend>
+                                <input class="form-control" type="number" name="ticket[2][mobile]"
+                                    placeholder="10 digits Mobile Number">
+                            </div>
+                            <div class="col-md-6">
+                                <legend>Email</legend>
+                                <input class="form-control" type="email" name="ticket[2][email]"
+                                    placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>Gender</legend>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[2][gender]" value="Male" checked>
+                                    <label class="form-check-label" for="male"> Male </label>
+                                    &emsp;
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[2][gender]" value="Female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                    &emsp;
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[2][gender]" value="Other">
+                                    <label class="form-check-label" for="other">Other</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <legend> Verfying Documents</legend>
+                                <input class="form-control" type="file"
+                                    name="document">
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-6">
+                                <legend> Passport-size Image</legend>
+                                <input class="form-control" type="file" name="image">
+                            </div>
+                        </div>
+                    </div>
+                    <div id="new-row-3" style="display: none;">
+                        <hr>
+                        <p class="lead">*Details of Member 4*</p>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>First Name</legend>
+                                <input class="form-control" type="text"
+                                    name="ticket[3][firstname]" placeholder="First Name">
+                            </div>
+                            <div class="col-md-6">
+                                <legend>Last Name</legend>
+                                <input class="form-control" type="text" name="ticket[3][lastname]"
+                                    placeholder="Last Name">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>Mobile No</legend>
+                                <input class="form-control" type="number" name="ticket[3][mobile]"
+                                    placeholder="10 digits Mobile Number">
+                            </div>
+                            <div class="col-md-6">
+                                <legend>Email</legend>
+                                <input class="form-control" type="email" name="ticket[3][email]"
+                                    placeholder="Email Address">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <legend>Gender</legend>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[3][gender]" value="Male" checked>
+                                    <label class="form-check-label" for="male"> Male </label>
+                                    &emsp;
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[3][gender]" value="Female">
+                                    <label class="form-check-label" for="female">Female</label>
+                                    &emsp;
+                                    <input class="form-check-input" type="radio"
+                                        name="ticket[3][gender]" value="Other">
+                                    <label class="form-check-label" for="other">Other</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <legend> Verfying Documents</legend>
+                                <input class="form-control" type="file"
+                                    name="document">
+                            </div>
+                        </div>
+                        <div class="form-group row justify-content-center">
+                            <div class="col-md-6">
+                                <legend> Passport-size Image</legend>
+                                <input class="form-control" type="file" name="image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <div class="col-md-6" style="display: none;" id="add-new-row">
+                        <legend> Add another Member </legend>
+                        <span id="toggle-form"><i class="fa fa-plus-square fa-2x"></i></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-block btn-dark">Register</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,54 @@
+<%-include('../partials/header') %>
+<div class="container">
+    <h1 class="display-4" style="text-align: center;">Edit Event</h1>
+    <div style="width: 40%; margin: 25px auto;">
+        <form action="/events/<%=event._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <input class="form-control" type="text" value="<%=event.title%>" name="event[title]" autofocus required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" value="<%=event.organizer%>" name="event[organizer]" autofocus required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" value="<%=event.location%>" name="event[location]" required>
+            </div>
+            <div class="row" style="margin: 10px 0px;">
+                <div class="col-md-2">
+                    <legend class="col-form-label col-sm-2 pt-0">Image</legend>
+                </div>
+                <div class="col-md-10">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="file" name="image" accept="image/*">
+                    </div> 
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control" name="event[type]">
+                    <option value="competiton" <%= event.type == 'competiton' ? 'selected' : '' %>>Competition</option>
+                    <option value="live_performance" <%= event.type == 'live_performance' ? 'selected' : '' %>>Live Performance</option>
+                    <option vlaue="conference" <%= event.type == 'conference' ? 'selected' : '' %>>Conference</option>
+                    <option value="product_launch" <%= event.type == 'product_launch' ? 'selected' : '' %>>Product Launch</option>
+                    <option value="festive" <%= event.type == 'festive' ? 'selected' : '' %>>Festive</option>
+                    <option value="charitable" <%= event.type == 'charitable' ? 'selected' : '' %>>Charitable Auctions</option>
+                    <option value="sponsered" <%= event.type == 'sponsered' ? 'selected' : '' %>>Sponsered Events</option>
+                    <option value="sports" <%= event.type == 'sports' ? 'selected' : '' %>>Sports</option>
+                    <option value="others" <%= event.type == 'others' ? 'selected' : '' %>>Others</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" onfocus="(this.type='datetime-local')" min="<%= moment().format('YYYY-MM-DDThh:mm'); %>" max="<%= moment().add(1,'years').format('YYYY-MM-DDThh:mm'); %>" value="<%= moment(event.event_date_time).format('YYYY/MM/DD hh:mm'); %>" name="event[event_date_time]" required>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" onfocus="(this.type='datetime-local')" min="<%= moment().format('YYYY-MM-DDThh:mm'); %>" max="<%= moment().add(1,'years').format('YYYY-MM-DDThh:mm'); %>" value="<%= moment(event.event_last_date).format('YYYY/MM/DD hh:mm'); %>" name="event[event_last_date]" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="event[description]" rows="7" required><%=event.description%></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-outline-light btn-block">Submit</button>
+            </div>
+        </form>
+        <a class="btn-outline-light" href="/events">Go Back</a>
+    </div>
+</div>
+<%-include('../partials/footer') %>

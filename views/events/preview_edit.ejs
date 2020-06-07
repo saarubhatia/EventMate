@@ -1,0 +1,242 @@
+<%- include('../partials/header') %>
+<div class="container" style="margin:25px auto;">
+    <h4 class="btn-danger">Register</h4>
+    <div class="img-thumbnail" id="event_register_form">
+        <div class="add-row">
+            <form action="/events/<%=event._id%>/register/<%=registration._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>First Name</legend>
+                        <input class="form-control" type="text" name="ticket[0][firstname]" value="<%=registration.tickets[0].firstname%>">
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Last Name</legend>
+                        <input class="form-control" type="text" name="ticket[0][lastname]" value="<%=registration.tickets[0].lastname%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>Mobile No</legend>
+                        <input class="form-control" type="number" name="tickets[0][mobile]"
+                        value="<%=registration.tickets[0].mobile%>">
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Email</legend>
+                        <input class="form-control" type="email" name="tickets[0][email]" value="<%=registration.tickets[0].email%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>Gender</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ticket[0][gender]" value="Male" <%= registration.tickets[0].gender == 'Male' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="male"> Male </label>
+                            &emsp;
+                            <input class="form-check-input" type="radio" name="ticket[0][gender]" value="Female" <%= registration.tickets[0].gender == 'Female' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="female">Female</label>
+                            &emsp;
+                            <input class="form-check-input" type="radio" name="ticket[0][gender]" value="Other" <%= registration.tickets[0].gender == 'Other' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="other">Other</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <legend> Verfying Documents</legend>
+                        <input class="form-control" type="file" name="document">
+                        <span style="display: inline-block; width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><%=registration.tickets[0].document%></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend> Passport-size Image</legend>
+                        <input class="form-control" type="file" name="image">
+                        <span style="display: inline-block; width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><%=registration.tickets[0].image%></span>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <legend> Registration Type</legend>
+                            <select id="select" class="dropdown form-control" name="registrationType">
+                                <option class="dropdown-item" value="Self" <%= registration.registrationType == 'Self' ? 'selected' : '' %>>Self</option>
+                                <option id="groups" class="dropdown-item" value="Groups" <%= registration.registrationType == 'Groups' ? 'selected' : '' %>>Groups (Max 4)
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <% if(registration.tickets[1]){ %>
+        <div class="all-rows">
+            <div id="new-row-1">
+                <hr>
+                <p class="lead">*Details of Member 2*</p>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>First Name</legend>
+                        <input class="form-control" type="text" name="ticket[1][firstname]" placeholder="First Name" value="<%=registration.tickets[1].firstname%>">
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Last Name</legend>
+                        <input class="form-control" type="text" name="ticket[1][lastname]" placeholder="Last Name" value="<%=registration.tickets[1].lastname%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>Mobile No</legend>
+                        <input class="form-control" type="number" name="ticket[1][mobile]"
+                            placeholder="10 digits Mobile Number" value="<%=registration.tickets[1].mobile%>">
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Email</legend>
+                        <input class="form-control" type="email" name="ticket[1][email]" placeholder="Email Address" value="<%=registration.tickets[1].email%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>Gender</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ticket[1][gender]" value="Male" <%= registration.tickets[1].gender == 'Male' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="male"> Male </label>
+                            &emsp;
+                            <input class="form-check-input" type="radio" name="ticket[1][gender]" value="Female" <%= registration.tickets[1].gender == 'Female' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="female">Female</label>
+                            &emsp;
+                            <input class="form-check-input" type="radio" name="ticket[1][gender]" value="Other" <%= registration.tickets[1].gender == 'Other' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="other">Other</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <legend> Verfying Documents</legend>
+                        <input class="form-control" type="file" name="document">
+                        <span style="display: inline-block; width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><%=registration.tickets[1].document%></span>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <div class="col-md-6">
+                        <legend> Passport-size Image</legend>
+                        <input class="form-control" type="file" name="image">
+                        <span style="display: inline-block; width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><%=registration.tickets[1].image%></span>
+                    </div>
+                </div>
+            </div>
+            <% if(registration.tickets[2]){ %>
+            <div id="new-row-2">
+                <hr>
+                <p class="lead">*Details of Member 3*</p>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>First Name</legend>
+                        <input class="form-control" type="text" name="ticket[2][firstname]" placeholder="First Name" value="<%=registration.tickets[2].firstname%>">
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Last Name</legend>
+                        <input class="form-control" type="text" name="ticket[2][lastname]" placeholder="Last Name" value="<%=registration.tickets[2].lastname%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>Mobile No</legend>
+                        <input class="form-control" type="number" name="ticket[2][mobile]"
+                            placeholder="10 digits Mobile Number" value="<%=registration.tickets[2].mobile%>">
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Email</legend>
+                        <input class="form-control" type="email" name="ticket[2][email]" placeholder="Email Address" value="<%=registration.tickets[2].email%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>Gender</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ticket[2][gender]" value="Male" <%= registration.tickets[2].gender == 'Male' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="male"> Male </label>
+                            &emsp;
+                            <input class="form-check-input" type="radio" name="ticket[2][gender]" value="Female" <%= registration.tickets[2].gender == 'Female' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="female">Female</label>
+                            &emsp;
+                            <input class="form-check-input" type="radio" name="ticket[2][gender]" value="Other" <%= registration.tickets[2].gender == 'Other' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="other">Other</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <legend> Verfying Documents</legend>
+                        <input class="form-control" type="file" name="document">
+                        <span style="display: inline-block; width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><%=registration.tickets[3].image%></span>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <div class="col-md-6">
+                        <legend> Passport-size Image</legend>
+                        <input class="form-control" type="file" name="image">
+                        <span style="display: inline-block; width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><%=registration.tickets[2].image%></span>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <% if(registration.tickets[3]){ %>
+            <div id="new-row-3">
+                <hr>
+                <p class="lead">*Details of Member 4*</p>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>First Name</legend>
+                        <input class="form-control" type="text" name="ticket[3][firstname]" placeholder="First Name" value="<%=registration.tickets[3].firstname%>">
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Last Name</legend>
+                        <input class="form-control" type="text" name="ticket[3][lastname]" placeholder="Last Name" value="<%=registration.tickets[3].firstname%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>Mobile No</legend>
+                        <input class="form-control" type="number" name="ticket[3][mobile]"
+                            placeholder="10 digits Mobile Number" value="<%=registration.tickets[3].mobile%>">
+                    </div>
+                    <div class="col-md-6">
+                        <legend>Email</legend>
+                        <input class="form-control" type="email" name="ticket[3][email]" placeholder="Email Address" value="<%=registration.tickets[3].email%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6">
+                        <legend>Gender</legend>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="ticket[3][gender]" value="Male" <%= registration.tickets[3].gender == 'Male' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="ale"> Male </label>
+                            &emsp;
+                            <input class="form-check-input" type="radio" name="ticket[3][gender]" value="Female" <%= registration.tickets[3].gender == 'Female' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="female">Female</label>
+                            &emsp;
+                            <input class="form-check-input" type="radio" name="ticket[3][gender]" value="Other" <%= registration.tickets[3].gender == 'Other' ? 'checked' : '' %>>
+                            <label class="form-check-label" for="other">Other</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <legend> Verfying Documents</legend>
+                        <input class="form-control" type="file" name="document">
+                        <span style="display: inline-block; width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><%=registration.tickets[3].document%></span>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-center">
+                    <div class="col-md-6">
+                        <legend> Passport-size Image</legend>
+                        <input class="form-control" type="file" name="image">
+                        <span style="display: inline-block; width: 300px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"><%=registration.tickets[3].image%></span>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+        <% } %>
+        <div class="form-group row justify-content-center">
+            <div class="col-md-6" style="display: none;" id="add-new-row">
+                <legend> Add another Member </legend>
+                <span id="toggle-form"><i class="fa fa-plus-square fa-2x"></i></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-lg btn-block btn-dark">Register</button>
+        </div>
+        </form>
+    </div>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,118 @@
+<%- include('../partials/header') %>
+<div class="container">
+    <div class="row justify-content-center options" style="text-align: center;">
+        <div class="col-md-6">
+            <a href="/events/new" class="newanchor">
+                <div class="card draw" >
+                    <img class="card-img-top" src="/images/add.png" style="height:14em;">
+                    <div class="card-body">
+                        <h3 class="card-text">Add New Event</h3>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6">
+                <div class="card draw" >
+                    <a href="#Modal1" data-toggle="modal" data-target="#Modal1" data-whatever="@event" class="newanchor">
+                    <img class="card-img-top" src="/images/events.png" alt="Card image cap" style="height:14em;">
+                    <div class="card-body">
+                        <h3 class="card-text">Event Details</h3>
+                    </div>
+                    </a>
+                </div>
+        
+            <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Event Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Enter EVENT ID</label>
+                                <form class="input-group md-form form-sm form-2 pl-0" action="/events/find" method="POST">
+                                    <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search"
+                                        name="search" aria-label="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn" style="padding:0;" type="submit">
+                                            <span style="height:36px; width:60px"
+                                                class="input-group-text amber lighten-3" id="basic-text1">
+                                                <i class="fas fa-search fa-lg text-grey" aria-hidden="true">
+                                                </i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+                <div class="card draw" >
+                    <a href="#Modal2" data-toggle="modal" data-target="#Modal2" data-whatever="@user" class="newanchor">
+                    <img class="card-img-top" src="/images/registration.png" alt="Card image cap" style="height:14em;">
+                    <div class="card-body">
+                        <h3 class="card-text">Registrations</h3>
+                    </div>
+                    </a>
+                </div>
+            
+            <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ModalLabel">Registrations</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Enter REGISTRATION ID</label>
+                                <form class="input-group md-form form-sm form-2 pl-0" action="/registrations/find" method="POST">
+                                    <input class="form-control my-0 py-1 amber-border" type="text" placeholder="Search"
+                                        name="search" aria-label="Search">
+                                    <div class="input-group-append">
+                                        <button class="btn" style="padding:0;" type="submit">
+                                            <span style="height:36px; width:60px"
+                                                class="input-group-text amber lighten-3" id="basic-text1">
+                                                <i class="fas fa-search fa-lg text-grey" aria-hidden="true">
+                                                </i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <a href="/events" class="newanchor">
+            <div class="card draw">
+                <img class="card-img-top" src="/images/edit.png" alt="Card image cap" style="height:14em;">
+                <div class="card-body">
+                    <h3 class="card-text">Manage Events</h3>
+                </div>
+            </div>
+        </a>
+        </div>
+    </div>
+    <br>
+    
+</div>
+<%- include('../partials/footer') %>

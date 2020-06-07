@@ -1,0 +1,72 @@
+<%- include('../partials/header') %>
+<div class="container">
+    <div class="row justify-content-center" style="background-color: black;">
+        <div class="col-md-12 mt-4" style="text-align: center;">
+            <a href="" class="h1 newanchor">EVENT NAME: <%=event.title%> </a>
+        </div>
+        <div class="col-md-12 mt-2" style="text-align: center;">
+            <p class="h5 text-muted"> <%= event.organizer%></p>
+        </div>
+        <div class="col-md-6 mt-4" style="text-align: center;">
+            <p class="h3">Location of event:  <%= event.location%></p>
+        </div>
+        <div class="col-md-6 mt-4" style="text-align: center;">
+            <p class="h3">Date of Registration :  <%=moment(registration.createdAt).format('DD-MM-YYYY')%></p>
+        </div>
+        <div class="col-md-6 mt-4" style="text-align: center;">
+            <p class="h3">Date of Event :  <%= moment(event.event_date_time).format("DD-MM-YYYY hh:mm")%></p>
+        </div>
+    </div>
+    <br>
+    <div class="row justify-content-center">
+        <% registration.tickets.forEach(function(ticket){ %>
+        <div class="col-md-6 col-sm-6 mt-4 card">
+            <div class="idCard">
+                <div class="row">
+                    <div class="col-md-12 profilePicture ">
+                        <img src="<%=ticket.image%>" class="img-thumbnail">
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;">
+                    <div class="col-md-6">
+                        <p><%=ticket.firstname%></p>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <p><%=ticket.lastname%></p>
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;">
+                    <div class="col-md-6">
+                        <p><%=ticket.mobile%></p>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <p><%=ticket.email%></p>
+                    </div>
+                </div>
+                <div class="row" style="text-align:center;">
+                    <div class="col-md-12">
+                        <p><%=ticket.gender%></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <img src="<%=ticket.document%>"
+                            class="img-thumbnail">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+    <div class="row justify-content-center" style="padding: 30px">
+        <div class="col-md-4" style="text-align:center">
+            <form action="#" method="POST">
+                <button type="button" class="btn btn-danger btn-lg" style="width:290px"><i class="fa fa-times" aria-hidden="true"></i>
+                    Cancel Registration</button>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

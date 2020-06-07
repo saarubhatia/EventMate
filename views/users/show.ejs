@@ -1,0 +1,52 @@
+<%-include('../partials/header') %>
+<div class="container">
+    <div style="width: 40%; margin: 25px auto;">
+        <h2 style="text-align: center;"></h2>
+        <h5 style="text-align: center;"></h5>
+        <div class="profile-img">
+            
+            <img class="img-fluid img-thumbnail rounded mx-auto d-block" src="<%= user.avatar %>" alt="User Profile Image"
+                onerror="this.onerror=null;this.src='../images/undraw_male_avatar_323b.svg'">
+            
+            <img class="img-fluid img-thumbnail rounded mx-auto d-block" src="<%= user.avatar %>" alt="User Profile Image"
+                onerror="this.onerror=null;this.src='../images/undraw_female_avatar_w3jk.svg'">
+            
+            <img class="img-fluid img-thumbnail rounded mx-auto d-block" src="<%= user.avatar %>" alt="User Profile Image"
+                onerror="this.onerror=null;this.src='../images/others.jpg'">
+            
+            <div class="caption" style="text-align: center;">
+                <a href="mailto:<%= user.email %>"></a>
+            </div>
+        </div>
+        <div class="well">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">First Name</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Last Name</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Gender</th>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <% 
+            <p class="lead" style="text-align: center; margin-top: 10px;"><%= user.firstName %>'s campgrounds</p>
+            <div class="list-group">
+                
+                    <a class="list-group-item list-group-item-action" href="/campgrounds/<%=campground.id%>"><%= campground.name %></a>
+                
+            </div>
+        <% 
+            <p class="lead" style="text-align: center; margin-top: 10px;"">You don't have any campgrounds yet!</p>
+
+    </div>
+</div>
+
+<%-include('../partials/footer') %>

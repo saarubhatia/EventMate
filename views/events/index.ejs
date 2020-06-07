@@ -1,0 +1,56 @@
+<%- include('../partials/header') %>
+<div>
+    <header class="jumbotron event_padding" style="text-align: center;">
+        
+        <div class="container-fluid">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item index-carousel active">
+                        <img class="d-block w-100" src="https://www.newstatesman.com/sites/all/themes/creative-responsive-theme/images/new_statesman_events.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item index-carousel">
+                        <img class="d-block w-100" src="https://corp.gametize.com/wp-content/uploads/2014/07/events-heavenly-header.jpg" alt="Second slide">
+                    </div>
+                    <div class="carousel-item index-carousel">
+                        <img class="d-block w-100" src="https://www.madebywifi.com/wp-content/uploads/2018/01/internet-for-hackatons-1024x480.jpg" alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <h1 class="display-4 animate__animated animate__heartBeat">Welcome to EventMate</h1>
+        <p style="margin-top: 20px;">
+            <a class="btn btn-outline-light btn-lg" href="#events_list">View all events&emsp;<i class="fas fa-arrow-down"></i></a>
+        </p>
+    </header>
+</div>
+<div class="container">
+    <div class="row text-center" id="events_list">
+        <% events.forEach(function(event){ %>
+        <div class="col-md-3 col-sm-6 events_list">
+            <div class="img-thumbnail event-card">
+                <img src="<%=event.image%>" style="width:100%;">
+                <div class="caption">
+                    <h4><%=event.title%></h4>
+                </div>
+                <p>
+                    <a href="/events/<%=event._id%>" class="btn btn-dark ">Register</a>
+                </p>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
+<%- include('../partials/footer') %>

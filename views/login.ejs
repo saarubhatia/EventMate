@@ -1,0 +1,174 @@
+<%-include('./partials/header') %>
+<div class="container">
+    <div class="row img-thumbnail login_div">
+        <div class="col-md-6">
+            <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item login_carousel  active">
+                        <img class="d-block w-100"
+                            src="https://techcrunch.com/wp-content/uploads/2017/12/disrupt-berlin-hackathon.jpg"
+                            alt="First slide">
+                    </div>
+                    <div class="carousel-item login_carousel">
+                        <img class="d-block w-100"
+                            src="https://images.unsplash.com/photo-1573339886518-264aa6f194b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                            alt="Second slide">
+                    </div>
+                    <div class="carousel-item login_carousel">
+                        <img class="d-block w-100"
+                            src="https://images.unsplash.com/photo-1488036106564-87ecb155bb15?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80"
+                            alt="Third slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <!--reg-form-->
+            <% if (page === 'register') { %>
+            <div class="reg-form">
+                <form action="/register" method="POST">
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationServer01">First name</label>
+                            <input type="text" class="form-control is-valid" id="validationServer01" name="firstName"
+                                placeholder="First name" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationServer02">Last name</label>
+                            <input type="text" class="form-control is-valid" id="validationServer02" name="lastName"
+                                placeholder="Last name" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServerUsername">Email</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                                </div>
+                                <input type="email" class="form-control is-invalid" id="validationServerUsername"
+                                    name="username" placeholder="Username" aria-describedby="inputGroupPrepend3"
+                                    required>
+                                <div class="invalid-feedback username-n">
+                                    Please choose a valid username.
+                                </div>
+                                <div class="valid-feedback">
+                                    Available
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServer03">Password</label>
+                            <input type="password" class="form-control is-invalid" id="validationServer03"
+                                name="password" placeholder="Password" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid password.
+                            </div>
+                            <div class="valid-feedback pass"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServer04">Confirm Password</label>
+                            <input type="password" class="form-control is-invalid" id="validationServer04"
+                                placeholder="Confirm Password" required>
+                            <div class="invalid-feedback cpass-n">
+                                Please enter a valid password
+                            </div>
+                            <div class="valid-feedback cpass-y"></div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServerAdminCode">Admin Code <span class="text-muted">(*If available)</span></label>
+                            <input type="password" class="form-control" id="validationServerAdminCode" name="adminCode"
+                                placeholder="Admin Code">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3"
+                                required>
+                            <label class="form-check-label" for="invalidCheck3">
+                                I agree to the terms and conditions of EventMate
+                            </label>
+                            <div class="invalid-feedback">
+                                You must agree before submitting.
+                            </div>
+                            <div class="valid-feedback">
+                                You can Sign Up now!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-outline-light" type="submit" name="reg-btn" id="reg-btn">Sign Up</button>
+                    </div>
+                    <a href="/login" class="login">Have an account? Login</a>
+                </form>
+            </div>
+            <!--login-form-->
+            <% } else { %>
+            <div class="login-form" style="margin: 130px auto;">
+                <form action="/login" method="POST">
+                    <div class="form-row">
+                        <div class="col-md-12 mt-4">
+                            <label for="validationServerUsernameLog">Username</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                                </div>
+                                <input type="email" class="form-control is-invalid" id="validationServerUsernameLog"
+                                    name="username" placeholder="Username" aria-describedby="inputGroupPrepend3"
+                                    required>
+                                <div class="invalid-feedback usernamelog-n">
+                                    Please provide a valid username.
+                                </div>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServer05">Password</label>
+                            <input type="password" class="form-control is-invalid" id="validationServer05"
+                                name="password" placeholder="Password" required>
+                            <div class="invalid-feedback">
+                                Please provide a valid password.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-outline-light log-btn" type="submit" name="log-btn" id="log-btn">Login</button>
+                    </div>
+                    <a href="/register" class="reg">Don't have an account? Sign Up</a>
+                </form>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</div>
+
+<%-include('./partials/footer') %>
